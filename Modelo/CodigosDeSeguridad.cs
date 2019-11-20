@@ -26,7 +26,7 @@ namespace Modelo
             return numeroGenerado;
         }
 
-        public string GenerarClave()
+        public string GenerarClave(string CodigoPais, string Dia, string Mes, string Anno, string NumeroIdentifiaccion, string NumeracionConsecutiva, string SituacionComprobante, string CodigoSeguridad)
         {
             return null;
         }

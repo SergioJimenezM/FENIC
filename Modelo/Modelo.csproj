@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emisor.cs" />
     <Compile Include="FacturaElectronica.cs" />
     <Compile Include="CodigosDeSeguridad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

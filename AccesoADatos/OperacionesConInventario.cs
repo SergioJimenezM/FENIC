@@ -8,11 +8,38 @@ namespace AccesoADatos
 {
     public class OperacionesConInventario
     {
-        public void nuevo(inventario nuevo)
+        public void agregar(inventario nuevo)
         {
             var db = new Context();
             db.inventario.Add(nuevo);
             db.Entry(nuevo).State = EntityState.Added;
+            db.SaveChanges();
+        }
+
+        public inventario buscar(int id) 
+        {
+            var db = new Context();
+            return db.inventario.Find(id);
+        }
+
+        public void editar(inventario porEditar) 
+        {
+            var db = new Context();
+            var DeLaDB = db.inventario.Find(porEditar.id);
+            DeLaDB.producto = porEditar.producto;
+            DeLaDB.unidadDeMedida = porEditar.unidadDeMedida;
+            DeLaDB.existencias = porEditar.existencias;
+            DeLaDB.descripcion = porEditar.descripcion;
+            db.Entry(DeLaDB).State = EntityState.Modified;
+            db.SaveChanges();
+                
+        }
+
+        public void eliminar(inventario porBorrar)
+        {
+            var db = new Context();
+            db.inventario.Remove(porBorrar);
+            db.Entry(porBorrar).State = EntityState.Deleted;
             db.SaveChanges();
         }
     }

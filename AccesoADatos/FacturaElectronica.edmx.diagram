@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4ef3da9fe05d4308a9d205fa515f2903" Name="Diagram1">
+        <EntityTypeShape EntityType="FacturaDigitalModel.emisor" Width="1.5" PointX="3" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.facturaElectronica" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.identificacion" Width="1.5" PointX="0.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.inventario" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.numeroLinea" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.receptor" Width="1.5" PointX="3" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.sucursales" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoDecimalDinero" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoDescuento" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoDetalleServicio" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoIdentificacion" Width="1.5" PointX="1.5" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoImpuestos" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoMedioPago" Width="1.5" PointX="3" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.tipoSituacion" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturaDigitalModel.unidadDeMedida" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_Emisor_identificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_facturaElectronica_Emisor" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_facturaElectronica_Receptor" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_facturaElectronica_tipoDetalleServicio" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_facturaElectronica_tipoMedioPago" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_identificacion_tipoIdentificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_Receptor_identificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_inventario_tipoDecimalDinero" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_inventario_unidadDeMedida" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDecimalDinero" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDecimalDinero1" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDecimalDinero2" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDecimalDinero3" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDecimalDinero4" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDescuento" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoDetalleServicio" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_tipoImpuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_NumeroLinea_unidadDeMedida" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_tipoDescuento_tipoDecimalDinero" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturaDigitalModel.FK_tipoDetalleServicio_tipoDecimalDinero" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

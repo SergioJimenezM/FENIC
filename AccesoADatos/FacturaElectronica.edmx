@@ -1,0 +1,1269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FacturaDigitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="emisor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Identificacion" Type="int" />
+          <Property Name="NombreComercial" Type="varchar" MaxLength="80" />
+          <Property Name="Ubicacion" Type="int" Nullable="false" />
+          <Property Name="Telefono" Type="int" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="160" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facturaElectronica">
+          <Key>
+            <PropertyRef Name="NumeroConsecutivo" />
+          </Key>
+          <Property Name="Clave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoActividad" Type="varchar" MaxLength="6" />
+          <Property Name="NumeroConsecutivo" Type="int" Nullable="false" />
+          <Property Name="FechaEmision" Type="datetime" Nullable="false" />
+          <Property Name="Emisor" Type="int" Nullable="false" />
+          <Property Name="Receptor" Type="int" Nullable="false" />
+          <Property Name="CondicionVenta" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="PlazoCredito" Type="nchar" MaxLength="10" />
+          <Property Name="MedioPago" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DetalleServicio" Type="int" />
+          <Property Name="OtrosCargos" Type="int" />
+          <Property Name="ResumenFactura" Type="int" />
+          <Property Name="InformacionReferencia" Type="int" />
+          <Property Name="Otros" Type="int" />
+        </EntityType>
+        <EntityType Name="identificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="int" />
+          <Property Name="Numero" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="inventario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="producto" Type="varchar" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="existencias" Type="int" />
+          <Property Name="unidadDeMedida" Type="int" />
+          <Property Name="precio" Type="int" />
+        </EntityType>
+        <EntityType Name="numeroLinea">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Tiquete" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="CodigoComercial" Type="int" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="UnidadMedida" Type="int" Nullable="false" />
+          <Property Name="UnidadMedidaComercial" Type="varchar" MaxLength="100" />
+          <Property Name="Detalle" Type="varchar" MaxLength="200" />
+          <Property Name="PrecioUnitario" Type="int" Nullable="false" />
+          <Property Name="MontoTotal" Type="int" Nullable="false" />
+          <Property Name="Descuento" Type="int" />
+          <Property Name="SubTotal" Type="int" />
+          <Property Name="BaseImponible" Type="int" />
+          <Property Name="Impuesto" Type="int" />
+          <Property Name="ImpuestoNeto" Type="int" />
+        </EntityType>
+        <EntityType Name="receptor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Identificacion" Type="int" />
+          <Property Name="IdentificacionExtranjero" Type="varchar" MaxLength="20" />
+          <Property Name="NombreComercial" Type="varchar" MaxLength="80" />
+          <Property Name="Ubicacion" Type="int" />
+          <Property Name="OtrasSenasExtranjero" Type="varchar" MaxLength="300" />
+          <Property Name="Telefono" Type="int" />
+          <Property Name="Fax" Type="int" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="160" />
+        </EntityType>
+        <EntityType Name="sucursales">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="int" Nullable="false" />
+          <Property Name="nombreSucursal" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="sucursal" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tipoDecimalDinero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="montoTotal" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoDescuento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="MontoDescuento" Type="int" Nullable="false" />
+          <Property Name="NaturalezaDescuento" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoDetalleServicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="numeroDeTiquete" Type="int" Nullable="false" />
+          <Property Name="MontoTotalLinea" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoIdentificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoImpuestos">
+          <Key>
+            <PropertyRef Name="idImpuesto" />
+          </Key>
+          <Property Name="idImpuesto" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoMedioPago">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoSituacion">
+          <Key>
+            <PropertyRef Name="idSituacion" />
+          </Key>
+          <Property Name="idSituacion" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="unidadDeMedida">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="simbolo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Emisor_identificacion">
+          <End Role="identificacion" Type="Self.identificacion" Multiplicity="0..1" />
+          <End Role="emisor" Type="Self.emisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="identificacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="emisor">
+              <PropertyRef Name="Identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_Emisor">
+          <End Role="emisor" Type="Self.emisor" Multiplicity="1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emisor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="Emisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_Receptor">
+          <End Role="receptor" Type="Self.receptor" Multiplicity="1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="receptor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="Receptor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_tipoDetalleServicio">
+          <End Role="tipoDetalleServicio" Type="Self.tipoDetalleServicio" Multiplicity="0..1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDetalleServicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="DetalleServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_tipoMedioPago">
+          <End Role="tipoMedioPago" Type="Self.tipoMedioPago" Multiplicity="1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoMedioPago">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="MedioPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_identificacion_tipoIdentificacion">
+          <End Role="tipoIdentificacion" Type="Self.tipoIdentificacion" Multiplicity="0..1" />
+          <End Role="identificacion" Type="Self.identificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoIdentificacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="identificacion">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inventario_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="precio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inventario_unidadDeMedida">
+          <End Role="unidadDeMedida" Type="Self.unidadDeMedida" Multiplicity="0..1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unidadDeMedida">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="unidadDeMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="PrecioUnitario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero1">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="MontoTotal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero2">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="SubTotal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero3">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="BaseImponible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero4">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="ImpuestoNeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDescuento">
+          <End Role="tipoDescuento" Type="Self.tipoDescuento" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDescuento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="Descuento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDetalleServicio">
+          <End Role="tipoDetalleServicio" Type="Self.tipoDetalleServicio" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDetalleServicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="Tiquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoImpuestos">
+          <End Role="tipoImpuestos" Type="Self.tipoImpuestos" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoImpuestos">
+              <PropertyRef Name="idImpuesto" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="Impuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_unidadDeMedida">
+          <End Role="unidadDeMedida" Type="Self.unidadDeMedida" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unidadDeMedida">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="UnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receptor_identificacion">
+          <End Role="identificacion" Type="Self.identificacion" Multiplicity="0..1" />
+          <End Role="receptor" Type="Self.receptor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="identificacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="receptor">
+              <PropertyRef Name="Identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipoDescuento_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="tipoDescuento" Type="Self.tipoDescuento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipoDescuento">
+              <PropertyRef Name="MontoDescuento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipoDetalleServicio_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="tipoDetalleServicio" Type="Self.tipoDetalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipoDetalleServicio">
+              <PropertyRef Name="MontoTotalLinea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FacturaDigitalModelStoreContainer">
+          <EntitySet Name="emisor" EntityType="Self.emisor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facturaElectronica" EntityType="Self.facturaElectronica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="identificacion" EntityType="Self.identificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventario" EntityType="Self.inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="numeroLinea" EntityType="Self.numeroLinea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="receptor" EntityType="Self.receptor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoDecimalDinero" EntityType="Self.tipoDecimalDinero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoDescuento" EntityType="Self.tipoDescuento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoDetalleServicio" EntityType="Self.tipoDetalleServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoIdentificacion" EntityType="Self.tipoIdentificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoImpuestos" EntityType="Self.tipoImpuestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoMedioPago" EntityType="Self.tipoMedioPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoSituacion" EntityType="Self.tipoSituacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="unidadDeMedida" EntityType="Self.unidadDeMedida" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Emisor_identificacion" Association="Self.FK_Emisor_identificacion">
+            <End Role="identificacion" EntitySet="identificacion" />
+            <End Role="emisor" EntitySet="emisor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_Emisor" Association="Self.FK_facturaElectronica_Emisor">
+            <End Role="emisor" EntitySet="emisor" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_Receptor" Association="Self.FK_facturaElectronica_Receptor">
+            <End Role="receptor" EntitySet="receptor" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_tipoDetalleServicio" Association="Self.FK_facturaElectronica_tipoDetalleServicio">
+            <End Role="tipoDetalleServicio" EntitySet="tipoDetalleServicio" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_tipoMedioPago" Association="Self.FK_facturaElectronica_tipoMedioPago">
+            <End Role="tipoMedioPago" EntitySet="tipoMedioPago" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_identificacion_tipoIdentificacion" Association="Self.FK_identificacion_tipoIdentificacion">
+            <End Role="tipoIdentificacion" EntitySet="tipoIdentificacion" />
+            <End Role="identificacion" EntitySet="identificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inventario_tipoDecimalDinero" Association="Self.FK_inventario_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inventario_unidadDeMedida" Association="Self.FK_inventario_unidadDeMedida">
+            <End Role="unidadDeMedida" EntitySet="unidadDeMedida" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero" Association="Self.FK_NumeroLinea_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero1" Association="Self.FK_NumeroLinea_tipoDecimalDinero1">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero2" Association="Self.FK_NumeroLinea_tipoDecimalDinero2">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero3" Association="Self.FK_NumeroLinea_tipoDecimalDinero3">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero4" Association="Self.FK_NumeroLinea_tipoDecimalDinero4">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDescuento" Association="Self.FK_NumeroLinea_tipoDescuento">
+            <End Role="tipoDescuento" EntitySet="tipoDescuento" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDetalleServicio" Association="Self.FK_NumeroLinea_tipoDetalleServicio">
+            <End Role="tipoDetalleServicio" EntitySet="tipoDetalleServicio" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoImpuestos" Association="Self.FK_NumeroLinea_tipoImpuestos">
+            <End Role="tipoImpuestos" EntitySet="tipoImpuestos" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_unidadDeMedida" Association="Self.FK_NumeroLinea_unidadDeMedida">
+            <End Role="unidadDeMedida" EntitySet="unidadDeMedida" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receptor_identificacion" Association="Self.FK_Receptor_identificacion">
+            <End Role="identificacion" EntitySet="identificacion" />
+            <End Role="receptor" EntitySet="receptor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipoDescuento_tipoDecimalDinero" Association="Self.FK_tipoDescuento_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="tipoDescuento" EntitySet="tipoDescuento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipoDetalleServicio_tipoDecimalDinero" Association="Self.FK_tipoDetalleServicio_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="tipoDetalleServicio" EntitySet="tipoDetalleServicio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FacturaDigitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="emisor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Identificacion" Type="Int32" />
+          <Property Name="NombreComercial" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Ubicacion" Type="Int32" Nullable="false" />
+          <Property Name="Telefono" Type="Int32" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="160" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="identificacion1" Relationship="Self.FK_Emisor_identificacion" FromRole="emisor" ToRole="identificacion" />
+          <NavigationProperty Name="facturaElectronica" Relationship="Self.FK_facturaElectronica_Emisor" FromRole="emisor" ToRole="facturaElectronica" />
+        </EntityType>
+        <EntityType Name="facturaElectronica">
+          <Key>
+            <PropertyRef Name="NumeroConsecutivo" />
+          </Key>
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoActividad" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroConsecutivo" Type="Int32" Nullable="false" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Emisor" Type="Int32" Nullable="false" />
+          <Property Name="Receptor" Type="Int32" Nullable="false" />
+          <Property Name="CondicionVenta" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PlazoCredito" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MedioPago" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DetalleServicio" Type="Int32" />
+          <Property Name="OtrosCargos" Type="Int32" />
+          <Property Name="ResumenFactura" Type="Int32" />
+          <Property Name="InformacionReferencia" Type="Int32" />
+          <Property Name="Otros" Type="Int32" />
+          <NavigationProperty Name="emisor1" Relationship="Self.FK_facturaElectronica_Emisor" FromRole="facturaElectronica" ToRole="emisor" />
+          <NavigationProperty Name="receptor1" Relationship="Self.FK_facturaElectronica_Receptor" FromRole="facturaElectronica" ToRole="receptor" />
+          <NavigationProperty Name="tipoDetalleServicio" Relationship="Self.FK_facturaElectronica_tipoDetalleServicio" FromRole="facturaElectronica" ToRole="tipoDetalleServicio" />
+          <NavigationProperty Name="tipoMedioPago" Relationship="Self.FK_facturaElectronica_tipoMedioPago" FromRole="facturaElectronica" ToRole="tipoMedioPago" />
+        </EntityType>
+        <EntityType Name="identificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="Int32" />
+          <Property Name="Numero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="emisor" Relationship="Self.FK_Emisor_identificacion" FromRole="identificacion" ToRole="emisor" />
+          <NavigationProperty Name="tipoIdentificacion" Relationship="Self.FK_identificacion_tipoIdentificacion" FromRole="identificacion" ToRole="tipoIdentificacion" />
+          <NavigationProperty Name="receptor" Relationship="Self.FK_Receptor_identificacion" FromRole="identificacion" ToRole="receptor" />
+        </EntityType>
+        <EntityType Name="inventario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="existencias" Type="Int32" />
+          <Property Name="unidadDeMedida" Type="Int32" />
+          <Property Name="precio" Type="Int32" />
+          <NavigationProperty Name="tipoDecimalDinero" Relationship="Self.FK_inventario_tipoDecimalDinero" FromRole="inventario" ToRole="tipoDecimalDinero" />
+          <NavigationProperty Name="unidadDeMedida1" Relationship="Self.FK_inventario_unidadDeMedida" FromRole="inventario" ToRole="unidadDeMedida" />
+        </EntityType>
+        <EntityType Name="numeroLinea">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Tiquete" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="CodigoComercial" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="UnidadMedida" Type="Int32" Nullable="false" />
+          <Property Name="UnidadMedidaComercial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Detalle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioUnitario" Type="Int32" Nullable="false" />
+          <Property Name="MontoTotal" Type="Int32" Nullable="false" />
+          <Property Name="Descuento" Type="Int32" />
+          <Property Name="SubTotal" Type="Int32" />
+          <Property Name="BaseImponible" Type="Int32" />
+          <Property Name="Impuesto" Type="Int32" />
+          <Property Name="ImpuestoNeto" Type="Int32" />
+          <NavigationProperty Name="tipoDecimalDinero" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero" FromRole="numeroLinea" ToRole="tipoDecimalDinero" />
+          <NavigationProperty Name="tipoDecimalDinero1" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero1" FromRole="numeroLinea" ToRole="tipoDecimalDinero" />
+          <NavigationProperty Name="tipoDecimalDinero2" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero2" FromRole="numeroLinea" ToRole="tipoDecimalDinero" />
+          <NavigationProperty Name="tipoDecimalDinero3" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero3" FromRole="numeroLinea" ToRole="tipoDecimalDinero" />
+          <NavigationProperty Name="tipoDecimalDinero4" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero4" FromRole="numeroLinea" ToRole="tipoDecimalDinero" />
+          <NavigationProperty Name="tipoDescuento" Relationship="Self.FK_NumeroLinea_tipoDescuento" FromRole="numeroLinea" ToRole="tipoDescuento" />
+          <NavigationProperty Name="tipoDetalleServicio" Relationship="Self.FK_NumeroLinea_tipoDetalleServicio" FromRole="numeroLinea" ToRole="tipoDetalleServicio" />
+          <NavigationProperty Name="tipoImpuestos" Relationship="Self.FK_NumeroLinea_tipoImpuestos" FromRole="numeroLinea" ToRole="tipoImpuestos" />
+          <NavigationProperty Name="unidadDeMedida" Relationship="Self.FK_NumeroLinea_unidadDeMedida" FromRole="numeroLinea" ToRole="unidadDeMedida" />
+        </EntityType>
+        <EntityType Name="receptor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Identificacion" Type="Int32" />
+          <Property Name="IdentificacionExtranjero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NombreComercial" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Ubicacion" Type="Int32" />
+          <Property Name="OtrasSenasExtranjero" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="Int32" />
+          <Property Name="Fax" Type="Int32" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="160" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="facturaElectronica" Relationship="Self.FK_facturaElectronica_Receptor" FromRole="receptor" ToRole="facturaElectronica" />
+          <NavigationProperty Name="identificacion1" Relationship="Self.FK_Receptor_identificacion" FromRole="receptor" ToRole="identificacion" />
+        </EntityType>
+        <EntityType Name="sucursales">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="Int32" Nullable="false" />
+          <Property Name="nombreSucursal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sucursal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tipoDecimalDinero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="montoTotal" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <NavigationProperty Name="inventario" Relationship="Self.FK_inventario_tipoDecimalDinero" FromRole="tipoDecimalDinero" ToRole="inventario" />
+          <NavigationProperty Name="numeroLinea" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero" FromRole="tipoDecimalDinero" ToRole="numeroLinea" />
+          <NavigationProperty Name="numeroLinea1" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero1" FromRole="tipoDecimalDinero" ToRole="numeroLinea" />
+          <NavigationProperty Name="numeroLinea2" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero2" FromRole="tipoDecimalDinero" ToRole="numeroLinea" />
+          <NavigationProperty Name="numeroLinea3" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero3" FromRole="tipoDecimalDinero" ToRole="numeroLinea" />
+          <NavigationProperty Name="numeroLinea4" Relationship="Self.FK_NumeroLinea_tipoDecimalDinero4" FromRole="tipoDecimalDinero" ToRole="numeroLinea" />
+          <NavigationProperty Name="tipoDescuento" Relationship="Self.FK_tipoDescuento_tipoDecimalDinero" FromRole="tipoDecimalDinero" ToRole="tipoDescuento" />
+          <NavigationProperty Name="tipoDetalleServicio" Relationship="Self.FK_tipoDetalleServicio_tipoDecimalDinero" FromRole="tipoDecimalDinero" ToRole="tipoDetalleServicio" />
+        </EntityType>
+        <EntityType Name="tipoDescuento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="MontoDescuento" Type="Int32" Nullable="false" />
+          <Property Name="NaturalezaDescuento" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="numeroLinea" Relationship="Self.FK_NumeroLinea_tipoDescuento" FromRole="tipoDescuento" ToRole="numeroLinea" />
+          <NavigationProperty Name="tipoDecimalDinero" Relationship="Self.FK_tipoDescuento_tipoDecimalDinero" FromRole="tipoDescuento" ToRole="tipoDecimalDinero" />
+        </EntityType>
+        <EntityType Name="tipoDetalleServicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="numeroDeTiquete" Type="Int32" Nullable="false" />
+          <Property Name="MontoTotalLinea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="facturaElectronica" Relationship="Self.FK_facturaElectronica_tipoDetalleServicio" FromRole="tipoDetalleServicio" ToRole="facturaElectronica" />
+          <NavigationProperty Name="numeroLinea" Relationship="Self.FK_NumeroLinea_tipoDetalleServicio" FromRole="tipoDetalleServicio" ToRole="numeroLinea" />
+          <NavigationProperty Name="tipoDecimalDinero" Relationship="Self.FK_tipoDetalleServicio_tipoDecimalDinero" FromRole="tipoDetalleServicio" ToRole="tipoDecimalDinero" />
+        </EntityType>
+        <EntityType Name="tipoIdentificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="identificacion" Relationship="Self.FK_identificacion_tipoIdentificacion" FromRole="tipoIdentificacion" ToRole="identificacion" />
+        </EntityType>
+        <EntityType Name="tipoImpuestos">
+          <Key>
+            <PropertyRef Name="idImpuesto" />
+          </Key>
+          <Property Name="idImpuesto" Type="Int32" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="numeroLinea" Relationship="Self.FK_NumeroLinea_tipoImpuestos" FromRole="tipoImpuestos" ToRole="numeroLinea" />
+        </EntityType>
+        <EntityType Name="tipoMedioPago">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="facturaElectronica" Relationship="Self.FK_facturaElectronica_tipoMedioPago" FromRole="tipoMedioPago" ToRole="facturaElectronica" />
+        </EntityType>
+        <EntityType Name="tipoSituacion">
+          <Key>
+            <PropertyRef Name="idSituacion" />
+          </Key>
+          <Property Name="idSituacion" Type="Int32" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="unidadDeMedida">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="simbolo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="inventario" Relationship="Self.FK_inventario_unidadDeMedida" FromRole="unidadDeMedida" ToRole="inventario" />
+          <NavigationProperty Name="numeroLinea" Relationship="Self.FK_NumeroLinea_unidadDeMedida" FromRole="unidadDeMedida" ToRole="numeroLinea" />
+        </EntityType>
+        <Association Name="FK_Emisor_identificacion">
+          <End Role="identificacion" Type="Self.identificacion" Multiplicity="0..1" />
+          <End Role="emisor" Type="Self.emisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="identificacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="emisor">
+              <PropertyRef Name="Identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_Emisor">
+          <End Role="emisor" Type="Self.emisor" Multiplicity="1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emisor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="Emisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_Receptor">
+          <End Role="receptor" Type="Self.receptor" Multiplicity="1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="receptor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="Receptor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_tipoDetalleServicio">
+          <End Role="tipoDetalleServicio" Type="Self.tipoDetalleServicio" Multiplicity="0..1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDetalleServicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="DetalleServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facturaElectronica_tipoMedioPago">
+          <End Role="tipoMedioPago" Type="Self.tipoMedioPago" Multiplicity="1" />
+          <End Role="facturaElectronica" Type="Self.facturaElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoMedioPago">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="facturaElectronica">
+              <PropertyRef Name="MedioPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_identificacion_tipoIdentificacion">
+          <End Role="tipoIdentificacion" Type="Self.tipoIdentificacion" Multiplicity="0..1" />
+          <End Role="identificacion" Type="Self.identificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoIdentificacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="identificacion">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receptor_identificacion">
+          <End Role="identificacion" Type="Self.identificacion" Multiplicity="0..1" />
+          <End Role="receptor" Type="Self.receptor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="identificacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="receptor">
+              <PropertyRef Name="Identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inventario_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="precio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inventario_unidadDeMedida">
+          <End Role="unidadDeMedida" Type="Self.unidadDeMedida" Multiplicity="0..1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unidadDeMedida">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="unidadDeMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="PrecioUnitario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero1">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="MontoTotal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero2">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="SubTotal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero3">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="BaseImponible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDecimalDinero4">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="ImpuestoNeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDescuento">
+          <End Role="tipoDescuento" Type="Self.tipoDescuento" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDescuento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="Descuento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoDetalleServicio">
+          <End Role="tipoDetalleServicio" Type="Self.tipoDetalleServicio" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDetalleServicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="Tiquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_tipoImpuestos">
+          <End Role="tipoImpuestos" Type="Self.tipoImpuestos" Multiplicity="0..1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoImpuestos">
+              <PropertyRef Name="idImpuesto" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="Impuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroLinea_unidadDeMedida">
+          <End Role="unidadDeMedida" Type="Self.unidadDeMedida" Multiplicity="1" />
+          <End Role="numeroLinea" Type="Self.numeroLinea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unidadDeMedida">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="numeroLinea">
+              <PropertyRef Name="UnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipoDescuento_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="tipoDescuento" Type="Self.tipoDescuento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipoDescuento">
+              <PropertyRef Name="MontoDescuento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipoDetalleServicio_tipoDecimalDinero">
+          <End Role="tipoDecimalDinero" Type="Self.tipoDecimalDinero" Multiplicity="1" />
+          <End Role="tipoDetalleServicio" Type="Self.tipoDetalleServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoDecimalDinero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipoDetalleServicio">
+              <PropertyRef Name="MontoTotalLinea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FacturaDigitalEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="emisor" EntityType="Self.emisor" />
+          <EntitySet Name="facturaElectronica" EntityType="Self.facturaElectronica" />
+          <EntitySet Name="identificacion" EntityType="Self.identificacion" />
+          <EntitySet Name="inventario" EntityType="Self.inventario" />
+          <EntitySet Name="numeroLinea" EntityType="Self.numeroLinea" />
+          <EntitySet Name="receptor" EntityType="Self.receptor" />
+          <EntitySet Name="sucursales" EntityType="Self.sucursales" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tipoDecimalDinero" EntityType="Self.tipoDecimalDinero" />
+          <EntitySet Name="tipoDescuento" EntityType="Self.tipoDescuento" />
+          <EntitySet Name="tipoDetalleServicio" EntityType="Self.tipoDetalleServicio" />
+          <EntitySet Name="tipoIdentificacion" EntityType="Self.tipoIdentificacion" />
+          <EntitySet Name="tipoImpuestos" EntityType="Self.tipoImpuestos" />
+          <EntitySet Name="tipoMedioPago" EntityType="Self.tipoMedioPago" />
+          <EntitySet Name="tipoSituacion" EntityType="Self.tipoSituacion" />
+          <EntitySet Name="unidadDeMedida" EntityType="Self.unidadDeMedida" />
+          <AssociationSet Name="FK_Emisor_identificacion" Association="Self.FK_Emisor_identificacion">
+            <End Role="identificacion" EntitySet="identificacion" />
+            <End Role="emisor" EntitySet="emisor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_Emisor" Association="Self.FK_facturaElectronica_Emisor">
+            <End Role="emisor" EntitySet="emisor" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_Receptor" Association="Self.FK_facturaElectronica_Receptor">
+            <End Role="receptor" EntitySet="receptor" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_tipoDetalleServicio" Association="Self.FK_facturaElectronica_tipoDetalleServicio">
+            <End Role="tipoDetalleServicio" EntitySet="tipoDetalleServicio" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facturaElectronica_tipoMedioPago" Association="Self.FK_facturaElectronica_tipoMedioPago">
+            <End Role="tipoMedioPago" EntitySet="tipoMedioPago" />
+            <End Role="facturaElectronica" EntitySet="facturaElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_identificacion_tipoIdentificacion" Association="Self.FK_identificacion_tipoIdentificacion">
+            <End Role="tipoIdentificacion" EntitySet="tipoIdentificacion" />
+            <End Role="identificacion" EntitySet="identificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receptor_identificacion" Association="Self.FK_Receptor_identificacion">
+            <End Role="identificacion" EntitySet="identificacion" />
+            <End Role="receptor" EntitySet="receptor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inventario_tipoDecimalDinero" Association="Self.FK_inventario_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inventario_unidadDeMedida" Association="Self.FK_inventario_unidadDeMedida">
+            <End Role="unidadDeMedida" EntitySet="unidadDeMedida" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero" Association="Self.FK_NumeroLinea_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero1" Association="Self.FK_NumeroLinea_tipoDecimalDinero1">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero2" Association="Self.FK_NumeroLinea_tipoDecimalDinero2">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero3" Association="Self.FK_NumeroLinea_tipoDecimalDinero3">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDecimalDinero4" Association="Self.FK_NumeroLinea_tipoDecimalDinero4">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDescuento" Association="Self.FK_NumeroLinea_tipoDescuento">
+            <End Role="tipoDescuento" EntitySet="tipoDescuento" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoDetalleServicio" Association="Self.FK_NumeroLinea_tipoDetalleServicio">
+            <End Role="tipoDetalleServicio" EntitySet="tipoDetalleServicio" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_tipoImpuestos" Association="Self.FK_NumeroLinea_tipoImpuestos">
+            <End Role="tipoImpuestos" EntitySet="tipoImpuestos" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroLinea_unidadDeMedida" Association="Self.FK_NumeroLinea_unidadDeMedida">
+            <End Role="unidadDeMedida" EntitySet="unidadDeMedida" />
+            <End Role="numeroLinea" EntitySet="numeroLinea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipoDescuento_tipoDecimalDinero" Association="Self.FK_tipoDescuento_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="tipoDescuento" EntitySet="tipoDescuento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipoDetalleServicio_tipoDecimalDinero" Association="Self.FK_tipoDetalleServicio_tipoDecimalDinero">
+            <End Role="tipoDecimalDinero" EntitySet="tipoDecimalDinero" />
+            <End Role="tipoDetalleServicio" EntitySet="tipoDetalleServicio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FacturaDigitalModelStoreContainer" CdmEntityContainer="FacturaDigitalEntities1">
+          <EntitySetMapping Name="emisor">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.emisor">
+              <MappingFragment StoreEntitySet="emisor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="NombreComercial" ColumnName="NombreComercial" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facturaElectronica">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.facturaElectronica">
+              <MappingFragment StoreEntitySet="facturaElectronica">
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="CodigoActividad" ColumnName="CodigoActividad" />
+                <ScalarProperty Name="NumeroConsecutivo" ColumnName="NumeroConsecutivo" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="Emisor" ColumnName="Emisor" />
+                <ScalarProperty Name="Receptor" ColumnName="Receptor" />
+                <ScalarProperty Name="CondicionVenta" ColumnName="CondicionVenta" />
+                <ScalarProperty Name="PlazoCredito" ColumnName="PlazoCredito" />
+                <ScalarProperty Name="MedioPago" ColumnName="MedioPago" />
+                <ScalarProperty Name="DetalleServicio" ColumnName="DetalleServicio" />
+                <ScalarProperty Name="OtrosCargos" ColumnName="OtrosCargos" />
+                <ScalarProperty Name="ResumenFactura" ColumnName="ResumenFactura" />
+                <ScalarProperty Name="InformacionReferencia" ColumnName="InformacionReferencia" />
+                <ScalarProperty Name="Otros" ColumnName="Otros" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="identificacion">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.identificacion">
+              <MappingFragment StoreEntitySet="identificacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventario">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.inventario">
+              <MappingFragment StoreEntitySet="inventario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="producto" ColumnName="producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="existencias" ColumnName="existencias" />
+                <ScalarProperty Name="unidadDeMedida" ColumnName="unidadDeMedida" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="numeroLinea">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.numeroLinea">
+              <MappingFragment StoreEntitySet="numeroLinea">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Tiquete" ColumnName="Tiquete" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoComercial" ColumnName="CodigoComercial" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
+                <ScalarProperty Name="UnidadMedidaComercial" ColumnName="UnidadMedidaComercial" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="BaseImponible" ColumnName="BaseImponible" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="ImpuestoNeto" ColumnName="ImpuestoNeto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="receptor">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.receptor">
+              <MappingFragment StoreEntitySet="receptor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="IdentificacionExtranjero" ColumnName="IdentificacionExtranjero" />
+                <ScalarProperty Name="NombreComercial" ColumnName="NombreComercial" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="OtrasSenasExtranjero" ColumnName="OtrasSenasExtranjero" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sucursales">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.sucursales">
+              <MappingFragment StoreEntitySet="sucursales">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="nombreSucursal" ColumnName="nombreSucursal" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoDecimalDinero">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoDecimalDinero">
+              <MappingFragment StoreEntitySet="tipoDecimalDinero">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoDescuento">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoDescuento">
+              <MappingFragment StoreEntitySet="tipoDescuento">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MontoDescuento" ColumnName="MontoDescuento" />
+                <ScalarProperty Name="NaturalezaDescuento" ColumnName="NaturalezaDescuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoDetalleServicio">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoDetalleServicio">
+              <MappingFragment StoreEntitySet="tipoDetalleServicio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numeroDeTiquete" ColumnName="numeroDeTiquete" />
+                <ScalarProperty Name="MontoTotalLinea" ColumnName="MontoTotalLinea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoIdentificacion">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoIdentificacion">
+              <MappingFragment StoreEntitySet="tipoIdentificacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoImpuestos">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoImpuestos">
+              <MappingFragment StoreEntitySet="tipoImpuestos">
+                <ScalarProperty Name="idImpuesto" ColumnName="idImpuesto" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoMedioPago">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoMedioPago">
+              <MappingFragment StoreEntitySet="tipoMedioPago">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoSituacion">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.tipoSituacion">
+              <MappingFragment StoreEntitySet="tipoSituacion">
+                <ScalarProperty Name="idSituacion" ColumnName="idSituacion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="unidadDeMedida">
+            <EntityTypeMapping TypeName="FacturaDigitalModel.unidadDeMedida">
+              <MappingFragment StoreEntitySet="unidadDeMedida">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="simbolo" ColumnName="simbolo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

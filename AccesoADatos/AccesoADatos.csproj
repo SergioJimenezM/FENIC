@@ -53,14 +53,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="emisor.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaElectronica.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturaElectronica.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="facturaElectronica.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaElectronica.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturaElectronica.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaElectronica1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="identificacion.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inventario.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="numeroLinea.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="receptor.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sucursales.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoDecimalDinero.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoDescuento.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoDetalleServicio.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoIdentificacion.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoImpuestos.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoMedioPago.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoSituacion.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="unidadDeMedida.cs">
+      <DependentUpon>FacturaElectronica.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="FacturaElectronica.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FacturaElectronica.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FacturaElectronica.edmx.diagram">
+      <DependentUpon>FacturaElectronica.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FacturaElectronica.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacturaElectronica.edmx</DependentUpon>
+      <LastGenOutput>FacturaElectronica.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FacturaElectronica.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacturaElectronica.edmx</DependentUpon>
+      <LastGenOutput>FacturaElectronica1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

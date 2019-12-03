@@ -13,9 +13,9 @@ namespace AccesoADatos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FacturaDigitalEntities1 : DbContext
+    public partial class Context : DbContext
     {
-        public FacturaDigitalEntities1()
+        public Context()
             : base("name=FacturaDigitalEntities1")
         {
         }

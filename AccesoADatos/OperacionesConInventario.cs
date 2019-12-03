@@ -10,7 +10,7 @@ namespace AccesoADatos
     {
         public void nuevo(inventario nuevo)
         {
-            var db = new FacturaDigitalEntities1();
+            var db = new Context();
             db.inventario.Add(nuevo);
             db.Entry(nuevo).State = EntityState.Added;
             db.SaveChanges();

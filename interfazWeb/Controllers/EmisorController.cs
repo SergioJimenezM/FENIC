@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using LogicaDeNegocio;
 namespace interfazWeb.Controllers
 {
+    [Authorize]
     public class EmisorController : Controller
     {
         // GET: Emisor

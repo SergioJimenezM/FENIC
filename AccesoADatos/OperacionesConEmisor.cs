@@ -10,13 +10,13 @@ namespace AccesoADatos
     {
         public List<emisor> Listar()
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             var resultado = db.emisor.ToList();
             return resultado;
         }
         public void agregar(emisor nuevo)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             db.emisor.Add(nuevo);
             db.Entry(nuevo).State = EntityState.Added;
             db.SaveChanges();
@@ -24,13 +24,13 @@ namespace AccesoADatos
 
         public emisor buscar(int id)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             return db.emisor.Find(id);
         }
 
         public void editar(emisor porEditar)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             var DeLaDB = db.emisor.Find(porEditar.id);
             DeLaDB.Nombre = porEditar.Nombre;
             DeLaDB.Identificacion = porEditar.Identificacion;
@@ -47,7 +47,7 @@ namespace AccesoADatos
 
         public void eliminar(emisor porBorrar)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             db.emisor.Remove(porBorrar);
             db.Entry(porBorrar).State = EntityState.Deleted;
             db.SaveChanges();

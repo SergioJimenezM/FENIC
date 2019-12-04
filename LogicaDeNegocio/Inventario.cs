@@ -31,5 +31,11 @@ namespace LogicaDeNegocio
             OperacionesConInventario op = new OperacionesConInventario();
             op.eliminar(PorEliminar);
         }
+
+        public List<inventario> listar() 
+        {
+            OperacionesConInventario op = new OperacionesConInventario();
+            return op.listar();
+        }
     }
 }

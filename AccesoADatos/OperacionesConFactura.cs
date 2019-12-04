@@ -10,7 +10,7 @@ namespace AccesoADatos
     {
         public void agregar(facturaElectronica nuevo)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             db.facturaElectronica.Add(nuevo);
             db.Entry(nuevo).State = EntityState.Added;
             db.SaveChanges();
@@ -18,13 +18,13 @@ namespace AccesoADatos
 
         public facturaElectronica buscar(int id)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             return db.facturaElectronica.Find(id);
         }
 
         public void editar(facturaElectronica porEditar)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             var DeLaDB = db.facturaElectronica.Find(porEditar.NumeroConsecutivo);
             DeLaDB.FechaEmision = porEditar.FechaEmision;
             DeLaDB.Emisor = porEditar.Emisor;
@@ -48,7 +48,7 @@ namespace AccesoADatos
 
         public void eliminar(facturaElectronica porBorrar)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             db.facturaElectronica.Remove(porBorrar);
             db.Entry(porBorrar).State = EntityState.Deleted;
             db.SaveChanges();

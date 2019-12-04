@@ -42,5 +42,11 @@ namespace AccesoADatos
             db.Entry(porBorrar).State = EntityState.Deleted;
             db.SaveChanges();
         }
+
+        public List<inventario> listar()
+        {
+            var db = new Context();
+            return db.inventario.ToList<inventario>();
+        }
     }
 }

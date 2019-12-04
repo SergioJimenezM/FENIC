@@ -10,7 +10,7 @@ namespace AccesoADatos
     {
         public void agregar(inventario nuevo)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             db.inventario.Add(nuevo);
             db.Entry(nuevo).State = EntityState.Added;
             db.SaveChanges();
@@ -18,13 +18,13 @@ namespace AccesoADatos
 
         public inventario buscar(int id) 
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             return db.inventario.Find(id);
         }
 
         public void editar(inventario porEditar) 
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             var DeLaDB = db.inventario.Find(porEditar.id);
             DeLaDB.producto = porEditar.producto;
             DeLaDB.unidadDeMedida = porEditar.unidadDeMedida;
@@ -37,7 +37,7 @@ namespace AccesoADatos
 
         public void eliminar(inventario porBorrar)
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             db.inventario.Remove(porBorrar);
             db.Entry(porBorrar).State = EntityState.Deleted;
             db.SaveChanges();
@@ -45,7 +45,7 @@ namespace AccesoADatos
 
         public List<inventario> listar()
         {
-            var db = new Context();
+            var db = new FacturaDigitalEntities1();
             return db.inventario.ToList<inventario>();
         }
     }

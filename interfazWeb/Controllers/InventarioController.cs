@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using LogicaDeNegocio;
 namespace interfazWeb.Controllers
 {
     public class InventarioController : Controller
@@ -11,7 +11,8 @@ namespace interfazWeb.Controllers
         // GET: Inventario
         public ActionResult Index()
         {
-            return View();
+            Inventario op = new Inventario();
+            return View(op.listar());
         }
 
         // GET: Inventario/Details/5

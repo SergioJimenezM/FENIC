@@ -8,6 +8,11 @@ namespace LogicaDeNegocio
 {
     class Emisor
     {
+        public List<emisor> Listar()
+        {
+            OperacionesConEmisor OperacionesConEmisor = new OperacionesConEmisor();
+            return OperacionesConEmisor.Listar();
+        }
         public void agregar(emisor nuevo)
         {
             OperacionesConEmisor op = new OperacionesConEmisor();

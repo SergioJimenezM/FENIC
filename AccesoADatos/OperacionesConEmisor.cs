@@ -8,6 +8,12 @@ namespace AccesoADatos
 {
     public class OperacionesConEmisor
     {
+        public List<emisor> Listar()
+        {
+            var db = new Context();
+            var resultado = db.emisor.ToList();
+            return resultado;
+        }
         public void agregar(emisor nuevo)
         {
             var db = new Context();

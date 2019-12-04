@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AccesoADatos;
 namespace LogicaDeNegocio
 {
-    class Emisor
+    public class Emisor
     {
         public List<emisor> Listar()
         {

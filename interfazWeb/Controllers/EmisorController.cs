@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using LogicaDeNegocio;
 namespace interfazWeb.Controllers
 {
     public class EmisorController : Controller
@@ -11,10 +11,10 @@ namespace interfazWeb.Controllers
         // GET: Emisor
         public ActionResult Index()
         {
-            //servicioParaVentaDeLoteriaClient = new ServicioParaVentaDeLoteriaClient();
-            //var lista = servicioParaVentaDeLoteriaClient.Listar();
+            Emisor operacionEmisor = new Emisor();
+            var lista = operacionEmisor.Listar();
 
-            return View(/*lista*/);
+            return View(lista);
         }
 
         // GET: Emisor/Details/5

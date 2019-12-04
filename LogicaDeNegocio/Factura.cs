@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AccesoADatos;
 namespace LogicaDeNegocio
 {
-    class Factura
+    public class Factura
     {
         public void agregar(facturaElectronica nuevo)
         {

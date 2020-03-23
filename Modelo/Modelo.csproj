@@ -56,6 +56,7 @@
     <Compile Include="CodigoType.cs" />
     <Compile Include="DecimalDineroType.cs" />
     <Compile Include="DescuentoType.cs" />
+    <Compile Include="DetalleDelServicio.cs" />
     <Compile Include="EmisorType.cs" />
     <Compile Include="ExoneracionType.cs" />
     <Compile Include="FacturaElectronica.cs" />

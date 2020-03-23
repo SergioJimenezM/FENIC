@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoADatos", "AccesoADato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interfazWeb", "interfazWeb\interfazWeb.csproj", "{FF7B4196-374A-4AFF-88EE-3E11C832844F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "Modelo\Modelo.csproj", "{9C2D2694-7FC6-4FAF-B680-545765252D61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FF7B4196-374A-4AFF-88EE-3E11C832844F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF7B4196-374A-4AFF-88EE-3E11C832844F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF7B4196-374A-4AFF-88EE-3E11C832844F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C2D2694-7FC6-4FAF-B680-545765252D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C2D2694-7FC6-4FAF-B680-545765252D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C2D2694-7FC6-4FAF-B680-545765252D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C2D2694-7FC6-4FAF-B680-545765252D61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

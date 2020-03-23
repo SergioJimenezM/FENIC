@@ -8,7 +8,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    class DecimalDineroType
+    public class DecimalDineroType
     {
+        public int ID { get; set; }
+        
+        [Range(0, 9999999999999.99999)]
+        public decimal Monto { get; set; }
     }
 }

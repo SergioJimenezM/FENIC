@@ -8,7 +8,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    class CodigoType
+    public class CodigoType
     {
+        public int ID { get; set; }
+        [Required]
+        public String Tipo { get; set; }
+        [Required]
+        [StringLength(20)]
+        public String Codigo { get; set; }
+
     }
 }

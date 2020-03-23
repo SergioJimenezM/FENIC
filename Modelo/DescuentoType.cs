@@ -8,7 +8,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    class DescuentoType
+    public class DescuentoType
     {
-    }
+        public int ID { get; set; }
+        [DisplayName("Monto del descuento")]
+        public DecimalDineroType MontoDescuento { get; set; }
+        [DisplayName("Naturaleza del descuento")]
+        [StringLength(80)]
+        public String NaturalezaDescuento { get; set; }
+}
 }

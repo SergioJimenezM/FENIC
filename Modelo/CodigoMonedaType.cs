@@ -8,7 +8,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    class CodigoMonedaType
+    public class CodigoMonedaType
     {
+        public int ID { get; set; }
+        [Required]
+        [DisplayName("Codigo de la moneda")]
+        public String CodigoMoneda { get; set; }
+        [DisplayName("Tipo de cambio")]
+        public DecimalDineroType TipoCambio { get; set; }
+
     }
 }

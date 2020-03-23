@@ -8,10 +8,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    public enum TipoDocumentoEnum { }
     public class ExoneracionType
     {
-        public TipoDocumentoEnum TipoDocumento { get; set; }
+        public int ID { get; set; }
+        [Required]
+        public virtual TipoDocumentoCatalogo TipoDocumento { get; set; }
+        [StringLength(40)]
+        [Required]
+        public String NumeroDocumento { get; set; }
+        [Required]
+        [StringLength(160)]
+        public String NombreInstitucion { get; set; }
+
+        [Required]
+        public DateTime FechaEmision { get; set; }
+        [Required]
+        public int PorcentajeExoneracion { get; set; }
+        [Required]
+        public DecimalDineroType MontoExoneracion { get; set; }
+
 
     }
 }

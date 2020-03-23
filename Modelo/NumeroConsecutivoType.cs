@@ -8,7 +8,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    class NumeroConsecutivoType
+    public class NumeroConsecutivoType
     {
+        public int ID { get; set; }
+        [Required]
+        [RegularExpression(@"\d{20,20}")]
+        public String NumeroConsecutivo { get; set; }
     }
 }

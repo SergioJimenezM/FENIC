@@ -8,7 +8,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modelo
 {
-    class ClaveType
+    public class ClaveType
     {
+        public int ID { get; set; }
+        [StringLength(50)]
+        [RegularExpression(@"\d{50,50}")]
+        public String Clave { get; set; }
     }
 }
